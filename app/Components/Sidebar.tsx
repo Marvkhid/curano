@@ -58,7 +58,7 @@ export const Sidebar = () => {
         </div>
         <p className="mt-10 text-base font-semibold">Thoughts time</p>
         <p className="text-sm text-white/80 mt-2 leading-tight">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Curano -- The best possible location for health care and maximum hosptality
         </p>
       </div>
     </aside>
