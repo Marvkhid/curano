@@ -1,6 +1,5 @@
-import Analytics from "@/app/Components/Analytics";
-
+import AnalyticsReports from '@/app/Components/analysts/AnalyticsReports';
 
 export default function AnalyticsPage() {
-  return <Analytics/>;
+  return <AnalyticsReports />;
 }
