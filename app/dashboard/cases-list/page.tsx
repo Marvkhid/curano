@@ -1,5 +1,5 @@
-import CasesList from "@/app/Components/CasesList"; // adjust path if needed
+import PatientCaseList from '../../Components/caselist/PatientCaseList';
 
-export default function CasesListPage() {
-  return <CasesList />;
+export default function CaseListPage() {
+  return <PatientCaseList />;
 }
