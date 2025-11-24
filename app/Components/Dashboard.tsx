@@ -8,7 +8,6 @@ const Dashboard = () => {
   return (
     <div>
       <div className="bg-white rounded-lg  pb-4 px-4 py-3 flex items-center gap-4">
-        aa
         <h1 className="text-lg font-semibold text-gray-800 flex-shrink-0">Dashboard</h1>
         <div className="flex items-center gap-6 ml-80 flex-grow">
           {/* Ask AI */}
