@@ -1,5 +1,5 @@
-import Meetings from "@/app/Components/Meetings";
+import MeetingsPage from '../../Components/meeting/MeetingsPage';
 
-export default function MeetingsPage() {
-  return <Meetings/>;
+export default function MeetingPage() {
+  return <MeetingsPage />;
 }
