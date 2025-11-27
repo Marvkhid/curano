@@ -23,7 +23,7 @@ export const Sidebar = () => {
       {/* Logo */}
       <div className="mb-6 flex justify-start">
         <Link href="/">
-          <Image src="/Curano.png" alt="Logo" width={120} height={40} priority />
+          <Image src="/curan.png" alt="Logo" width={120} height={40} priority />
         </Link>
       </div>
 
