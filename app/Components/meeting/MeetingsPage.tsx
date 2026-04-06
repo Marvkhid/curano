@@ -212,17 +212,18 @@ export default function MeetingsPage(): React.JSX.Element {
             </div>
           </header>
 
-          {/* Video + Chat stacked on mobile, side-by-side on md+ */}
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 min-h-0">
-            <VideoCallSection
-              cameraOff={cameraOff}
-              setCameraOff={setCameraOff}
-              muted={muted}
-              setMuted={setMuted}
-              timer={timer}
-              hangup={hangup}
-            />
-            <ChatSection
+            {/* Video + Chat stacked on mobile, side-by-side on md+ */}
+                  <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 min-h-0">
+                    <VideoCallSection
+                            callState={{
+                              cameraOff,
+                              setCameraOff,
+                              muted,
+                              setMuted,
+                              timer,
+                              hangup,
+                            }}/>
+                    <ChatSection
               messages={messages}
               messageText={messageText}
               setMessageText={setMessageText}
