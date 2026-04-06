@@ -80,18 +80,17 @@ const Signup = () => {
 
   return (
     <div className="flex flex-col lg:flex-row bg-white min-h-screen">
-      {/* LEFT SIDE (Background Section) */}
+      
+      {/* LEFT SIDE */}
       <div
-        className="relative w-full lg:w-1/2 h-80 sm:h-96 md:h-[28rem] lg:h-screen bg-cover bg-center transition-all duration-700"
-        style={{
-          backgroundImage: `url(${bg})`,
-        }}
+        className="relative w-full lg:w-1/2 min-h-[300px] sm:min-h-[420px] lg:h-screen bg-cover bg-center transition-all duration-700"
+        style={{ backgroundImage: `url(${bg})` }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
 
-        {/* Curano logo */}
+        {/* Logo */}
         <div className="absolute top-4 left-4 lg:top-6 lg:left-6 z-10">
           <Image
             src="/Curano.png"
@@ -102,96 +101,82 @@ const Signup = () => {
           />
         </div>
 
-        {/* Main content */}
-        <div className="absolute inset-0 text-white px-4 py-6 sm:py-8 lg:px-6 lg:py-10 flex flex-col justify-between lg:justify-start lg:pt-48">
-          {/* Welcome text - always visible */}
-          <div className="flex-1 flex flex-col justify-center lg:justify-start lg:mb-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-extrabold mb-2 sm:mb-3 lg:mb-4 text-white leading-tight">
+        {/* Content */}
+        <div className="absolute inset-0 text-white px-4 py-6 sm:py-8 lg:px-8 lg:py-10 flex flex-col justify-between space-y-4 lg:space-y-8 lg:pt-40">
+          
+          {/* Main Text */}
+          <div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-extrabold mb-2 lg:mb-4">
               Welcome
             </h1>
-            <div className="text-sm sm:text-base md:text-lg lg:text-3xl font-semibold lg:font-semibold">
+            <div className="text-sm sm:text-base md:text-lg lg:text-2xl font-semibold">
               {texts.map((text, i) => (
-                <p key={i} className="leading-snug lg:leading-snug">
-                  {text}
-                </p>
+                <p key={i}>{text}</p>
               ))}
             </div>
           </div>
 
-          {/* Testimonial Card */}
-          <div className="bg-gray-700 bg-opacity-90 p-3 sm:p-4 rounded-xl max-w-xs sm:max-w-sm lg:max-w-md">
+          {/* Testimonial (hidden on very small screens) */}
+          <div className="hidden sm:block bg-gray-700/90 p-4 rounded-xl max-w-sm lg:max-w-lg">
             <div className="mb-3">
               {texts.map((text, i) => (
-                <p key={i} className="text-xs sm:text-sm lg:text-lg leading-relaxed">
+                <p key={i} className="text-xs sm:text-sm lg:text-base">
                   {text}
                 </p>
               ))}
             </div>
-            <div className="flex gap-2 sm:gap-3 items-center">
+            <div className="flex gap-3 items-center">
               <Image
                 src={profile}
                 alt="Doctor"
-                width={32}
-                height={32}
-                className="rounded-xl sm:w-10 sm:h-10 lg:w-12 lg:h-12"
+                width={40}
+                height={40}
+                className="rounded-xl lg:w-12 lg:h-12"
               />
               <div>
-                <p className="font-semibold text-white text-xs sm:text-sm lg:text-base">
+                <p className="font-semibold text-white text-sm lg:text-base">
                   {profileName}
                 </p>
-                <p className="text-xs sm:text-xs lg:text-sm text-gray-300">{occupation}</p>
+                <p className="text-xs lg:text-sm text-gray-300">{occupation}</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* DOT INDICATORS - Hidden on mobile, visible on lg+ */}
-        <div className="hidden lg:flex gap-2 absolute bottom-3 sm:bottom-4 lg:bottom-6 left-6 z-10">
+        {/* Dots */}
+        <div className="hidden lg:flex gap-2 absolute bottom-6 left-6 z-10">
           {bgContents.map((_, i) => (
             <span
               key={i}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                i === current ? 'bg-blue-500 scale-110' : 'bg-white opacity-60'
+              className={`w-2 h-2 rounded-full ${
+                i === current ? 'bg-blue-500 scale-110' : 'bg-white/60'
               }`}
-            ></span>
+            />
           ))}
         </div>
       </div>
 
-      {/* RIGHT SIDE (Signup Form) */}
-      <div className="w-full lg:w-1/2 bg-gray-100 px-4 sm:px-6 md:px-10 py-6 lg:py-10 flex items-center justify-center">
+      {/* RIGHT SIDE */}
+      <div className="w-full lg:w-1/2 bg-gray-100 px-4 sm:px-6 md:px-10 py-6 lg:py-10 flex items-start lg:items-center justify-center">
         <div className="w-full max-w-md">
           <h2 className="text-xl sm:text-2xl font-bold text-center mb-2 text-black">
             Create your account
           </h2>
-          <p className="text-gray-500 text-center text-sm sm:text-base">
-            Create/login on existing account
-          </p>
-          <p className="text-gray-500 text-center mb-6 text-sm sm:text-base">
-            with your correct details
+
+          <p className="text-gray-500 text-center text-sm sm:text-base mb-6">
+            Create/login on existing account with your correct details
           </p>
 
           <form className="space-y-4 mb-6">
-            <input
-              type="text"
-              placeholder="Name"
-              className="w-full bg-white p-3 rounded border border-gray-200 text-black placeholder-gray-500 text-sm sm:text-base"
-            />
-            <input
-              type="text"
-              placeholder="Hospital address"
-              className="w-full bg-white p-3 rounded border border-gray-200 text-black placeholder-gray-500 text-sm sm:text-base"
-            />
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="w-full bg-white p-3 rounded border border-gray-200 text-black placeholder-gray-500 text-sm sm:text-base"
-            />
+            <input type="text" placeholder="Name" className="w-full bg-white p-3 rounded border text-sm sm:text-base" />
+            <input type="text" placeholder="Hospital address" className="w-full bg-white p-3 rounded border text-sm sm:text-base" />
+            <input type="email" placeholder="Email Address" className="w-full bg-white p-3 rounded border text-sm sm:text-base" />
+
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Create Password"
-                className="w-full bg-white p-3 rounded border border-gray-200 text-black placeholder-gray-500 text-sm sm:text-base"
+                className="w-full bg-white p-3 rounded border text-sm sm:text-base"
               />
               <span
                 className="absolute right-3 top-3 cursor-pointer text-gray-500"
@@ -202,19 +187,14 @@ const Signup = () => {
             </div>
 
             <label className="text-sm flex items-center gap-2 flex-wrap">
-              <div className="flex items-center gap-2">
-                <input type="checkbox" className="accent-green-500" />
-                <span className="text-black">Agree to the</span>
-              </div>
+              <input type="checkbox" className="accent-green-500" />
+              <span className="text-black">Agree to the</span>
               <Link href="/terms" className="text-green-600 hover:underline">
                 terms and conditions
               </Link>
             </label>
 
-            <button
-              type="submit"
-              className="w-full bg-green-900 hover:bg-green-800 text-white cursor-pointer py-3 rounded-lg font-bold transition-colors"
-            >
+            <button className="w-full bg-green-900 hover:bg-green-800 text-white py-3 rounded-lg font-bold">
               Sign Up
             </button>
           </form>
@@ -222,32 +202,8 @@ const Signup = () => {
           <p className="text-center text-gray-500 mb-6 text-sm">Or sign up with</p>
 
           <div className="flex justify-center gap-4 mb-6">
-            <Link
-              href="https://apple.com"
-              target="_blank"
-              className="hover:opacity-80 transition-opacity"
-            >
-              <Image
-                src="/apple.png"
-                alt="Apple"
-                width={40}
-                height={40}
-                className="border border-black p-2 rounded-full bg-white"
-              />
-            </Link>
-            <Link
-              href="https://play.google.com"
-              target="_blank"
-              className="hover:opacity-80 transition-opacity"
-            >
-              <Image
-                src="/googleplay.png"
-                alt="Google Play"
-                width={40}
-                height={40}
-                className="border border-black p-2 rounded-full bg-white"
-              />
-            </Link>
+            <Image src="/apple.png" alt="Apple" width={40} height={40} className="border p-2 rounded-full bg-white" />
+            <Image src="/googleplay.png" alt="Google" width={40} height={40} className="border p-2 rounded-full bg-white" />
           </div>
 
           <p className="text-center text-gray-700 text-sm">

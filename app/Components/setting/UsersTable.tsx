@@ -12,8 +12,10 @@ interface UsersTableProps {
 export default function UsersTable({ users, onDelete }: UsersTableProps) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <table className="w-full min-w-[600px]">
-        <thead className="bg-gray-100 text-left">
+      <table className="w-full border-collapse">
+        
+        {/* Hide header on mobile, show on desktop */}
+        <thead className="hidden md:table-header-group bg-gray-100 text-left">
           <tr>
             <th className="p-3">User</th>
             <th className="p-3">Gender</th>
@@ -23,13 +25,18 @@ export default function UsersTable({ users, onDelete }: UsersTableProps) {
             <th className="p-3 text-center">Action</th>
           </tr>
         </thead>
-        <tbody>
+
+        <tbody className="block md:table-row-group">
           {users.map((user) => (
             <UserRow key={user.id} user={user} onDelete={onDelete} />
           ))}
+
           {users.length === 0 && (
-            <tr>
-              <td colSpan={6} className="text-center py-6 text-gray-500">
+            <tr className="block md:table-row">
+              <td
+                colSpan={6}
+                className="text-center py-6 text-gray-500 block md:table-cell"
+              >
                 No users available
               </td>
             </tr>

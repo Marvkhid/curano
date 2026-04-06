@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { useState } from "react";
 import Image from "next/image";
 import {
@@ -11,7 +11,6 @@ import {
 } from "recharts";
 import { Download, Share2, User, ChevronDown } from "lucide-react";
 
-// Chart data
 const data = [
   { month: "Jan", newPatients: 10, oldPatients: 120 },
   { month: "Feb", newPatients: 60, oldPatients: 200 },
@@ -65,64 +64,58 @@ export default function CaseDashboard() {
   ]);
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-4 sm:p-6 bg-gray-50 min-h-screen space-y-6">
+
+      {/* TOP GRID: PROFILE + CHART */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Profile & Diagnosis FLEXED together */}
+        {/* PROFILE CARD */}
         <div className="bg-white rounded-lg p-4 shadow-md flex flex-col gap-3 relative">
-          {/* ✅ HEADER */}
-          <div className="flex items-center gap-10 mb-2 text-sm text-gray-700">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-gray-700">
             <h1 className="font-semibold text-base">New report</h1>
-
             <div className="flex items-center gap-1 text-gray-500">
-              <span>Patient</span>
-              <User size={14} />
+              <User size={14} /> Patient
             </div>
-
             <div className="flex items-center gap-1 text-gray-800 font-medium">
-              Jennifer Willhite
-              <ChevronDown size={14} />
+              Jennifer Willhite <ChevronDown size={14} />
             </div>
           </div>
 
-          <div className="flex gap-4">
-            {/* LEFT CARD */}
-            <div className="flex flex-col items-start w-1/3 bg-white rounded-md shadow p-3">
+          <div className="flex flex-col sm:flex-row gap-4 mt-3">
+            <div className="flex flex-col items-center sm:items-start w-full sm:w-1/3 bg-white rounded-md shadow p-3">
               <Image
                 src="/andrea.png"
                 alt="Patient"
-                width={46}
-                height={46}
+                width={64}
+                height={64}
                 className="rounded-full object-cover"
               />
               <h2 className="mt-2 text-base font-semibold">Jennifer Willhite</h2>
               <p className="text-xs text-gray-500">Jennifer234@gmail.com</p>
 
               <div className="mt-3 text-xs space-y-1 text-gray-700 text-left w-full">
-                <p><strong>Age:</strong></p>
-                <p><strong>Diagnosis:</strong></p>
-                <p><strong>Next of Kin:</strong></p>
-                <p><strong>Address:</strong></p>
+                <p><strong>Age:</strong> 29</p>
+                <p><strong>Diagnosis:</strong> Stage IIA</p>
+                <p><strong>Next of Kin:</strong> John Doe</p>
+                <p><strong>Address:</strong> 123 Main St, NY</p>
               </div>
             </div>
 
-            {/* RIGHT DETAILS */}
-            <div className="flex flex-col w-2/3 relative">
+            <div className="flex flex-col w-full sm:w-2/3 relative">
               <h3 className="font-semibold mb-1 text-gray-800 text-sm">Diagnosis:</h3>
               <p className="text-xs text-gray-600 leading-snug">
-                Lorem ipsum dolor sit amet, consectetur voluptate
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
               </p>
               <p className="text-xs text-gray-600 mb-2">
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupida.
+                Velit esse cillum dolore eu fugiat nulla pariatur.
               </p>
 
-              <div className="flex gap-6 mb-2">
+              <div className="flex gap-4 mb-2 text-xs text-gray-600">
                 <div>
-                  <p className="text-[10px] text-gray-500">Contractions</p>
+                  <p className="text-gray-500">Contractions</p>
                   <p className="font-bold text-base">8/h</p>
                 </div>
-
                 <div>
-                  <p className="text-[10px] text-gray-500">Cancer growth</p>
+                  <p className="text-gray-500">Cancer growth</p>
                   <p className="font-bold text-base">26%</p>
                 </div>
               </div>
@@ -130,15 +123,15 @@ export default function CaseDashboard() {
               <Image
                 src="/red-cancer.png"
                 alt="Cancer Cell"
-                width={220}
-                height={220}
-                className="absolute right-1 top-10 opacity-90"
+                width={160}
+                height={160}
+                className="absolute right-0 top-10 opacity-90 hidden sm:block"
               />
             </div>
           </div>
         </div>
 
-        {/* Tumor Board Activity Chart */}
+        {/* CHART */}
         <div className="bg-white rounded-lg p-4 shadow-md flex flex-col">
           <div className="flex justify-between items-center mb-3">
             <h3 className="font-semibold text-base">Tumor Board Activity Trends</h3>
@@ -151,61 +144,39 @@ export default function CaseDashboard() {
               </span>
             </div>
           </div>
-
-          <div className="h-[220px]">
+          <div className="h-56 sm:h-64">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data}>
                 <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
-                <Line
-                  type="monotone"
-                  dataKey="newPatients"
-                  stroke="#0f766e"
-                  strokeWidth={2}
-                  dot={false}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="oldPatients"
-                  stroke="#9ca3af"
-                  strokeWidth={2}
-                  dot={false}
-                />
+                <Line type="monotone" dataKey="newPatients" stroke="#0f766e" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="oldPatients" stroke="#9ca3af" strokeWidth={2} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
       </div>
 
-      {/* Main FLEX CONTAINER */}
-      <div className="flex flex-col lg:flex-row gap-6 mt-6">
-        {/* LEFT SECTION (70%) */}
+      {/* MAIN CONTENT */}
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* LEFT TABLE */}
         <div className="w-full lg:w-[70%] bg-white rounded-2xl shadow-md p-5">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
             <h3 className="text-lg font-semibold text-gray-800">Latest case activity log</h3>
-
-            <div className="w-56">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search by case id"
-                  className="w-full rounded-md border border-gray-200 py-2 pl-10 pr-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
-                />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z" />
-                </svg>
-              </div>
+            <div className="w-full sm:w-56 relative">
+              <input
+                type="text"
+                placeholder="Search by case id"
+                className="w-full rounded-md border border-gray-200 py-2 pl-10 pr-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+              />
+              <svg xmlns="http://www.w3.org/2000/svg" className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z" />
+              </svg>
             </div>
           </div>
 
-          {/* DESKTOP TABLE VIEW */}
+          {/* TABLE */}
           <div className="hidden md:block overflow-x-auto">
             <table className="min-w-full text-sm text-left">
               <thead className="bg-gray-50">
@@ -219,7 +190,6 @@ export default function CaseDashboard() {
                   <th className="py-3 px-4 text-gray-500 font-normal text-sm text-right">Actions</th>
                 </tr>
               </thead>
-
               <tbody>
                 {caseLogs.map((log) => (
                   <tr key={log.id} className="border-b border-gray-100 hover:bg-gray-50 transition">
@@ -241,8 +211,8 @@ export default function CaseDashboard() {
             </table>
           </div>
 
-          {/* MOBILE CARD VIEW */}
-          <div className=" md:hidden flex flex-col gap-3">
+          {/* MOBILE CARDS */}
+          <div className="md:hidden flex flex-col gap-3">
             {caseLogs.map((log) => (
               <div key={log.id} className="bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition p-3">
                 <div className="flex justify-between items-start">
@@ -252,14 +222,12 @@ export default function CaseDashboard() {
                   </div>
                   <div className="text-sm text-gray-600">{log.date}</div>
                 </div>
-
                 <div className="mt-3 flex items-center justify-between text-xs text-gray-600">
-                  <div className="space-x-3">
+                  <div className="space-x-2">
                     <span className="text-gray-500">Case:</span>
                     <span className="text-blue-500 font-medium">{log.caseId}</span>
-                    <span className="ml-2">Age: {log.age}</span>
+                    <span>Age: {log.age}</span>
                   </div>
-
                   <div className="inline-flex items-center gap-3 text-gray-500">
                     <Download className="w-4 h-4 hover:text-blue-600 cursor-pointer" />
                     <Share2 className="w-4 h-4 hover:text-blue-600 cursor-pointer" />
@@ -270,8 +238,8 @@ export default function CaseDashboard() {
           </div>
         </div>
 
-        {/* RIGHT SECTION (30%) */}
-        <div className="w-full lg:w-[30%] bg-white rounded-2xl shadow-md p-5 pb-12 h-fit">
+        {/* RIGHT CONTRIBUTORS */}
+        <div className="w-full lg:w-[30%] bg-white rounded-2xl shadow-md p-5 h-fit">
           <h4 className="text-lg font-semibold text-gray-800 mb-4">Top contributors</h4>
           <div className="flex flex-col gap-3">
             {contributors.map((c) => (
@@ -284,11 +252,7 @@ export default function CaseDashboard() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span
-                    className={`h-2 w-2 rounded-full ${
-                      c.status === "Available" ? "bg-green-500" : "bg-red-500"
-                    }`}
-                  />
+                  <span className={`h-2 w-2 rounded-full ${c.status === "Available" ? "bg-green-500" : "bg-red-500"}`} />
                   <div className="text-sm text-gray-700">{c.status}</div>
                 </div>
               </div>

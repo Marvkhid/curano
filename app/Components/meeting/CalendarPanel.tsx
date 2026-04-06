@@ -23,9 +23,10 @@ export default function CalendarPanel({
   nextMonth,
 }: CalendarPanelProps) {
   return (
-    <div className="bg-white rounded-2xl shadow p-4">
+    <div className="bg-white rounded-2xl shadow p-4 w-full max-w-sm">
+      {/* Header */}
       <div className="flex items-center justify-between mb-3">
-        <div className="text-xs text-gray-500">Calendar</div>
+        <div className="text-xs font-semibold text-gray-500">Calendar</div>
         <div className="text-xs text-gray-400">
           {calendarDate.toLocaleString(undefined, {
             month: 'long',
@@ -34,26 +35,36 @@ export default function CalendarPanel({
         </div>
       </div>
 
-      {/* Calendar controls */}
+      {/* Month Controls */}
       <div className="flex items-center justify-between mb-2 gap-2">
-        <button onClick={prevMonth} type="button" className="px-2 py-1 rounded border text-sm">
+        <button
+          onClick={prevMonth}
+          type="button"
+          className="px-2 py-1 rounded border hover:bg-gray-100 transition text-sm"
+          aria-label="Previous month"
+        >
           ◀
         </button>
 
         <div className="flex-1 grid grid-cols-7 gap-1 text-[12px] text-center">
           {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
-            <div key={`${d}-${i}`} className="text-xs text-gray-400">
+            <div key={`${d}-${i}`} className="text-xs text-gray-400 font-medium">
               {d}
             </div>
           ))}
         </div>
 
-        <button onClick={nextMonth} type="button" className="px-2 py-1 rounded border text-sm">
+        <button
+          onClick={nextMonth}
+          type="button"
+          className="px-2 py-1 rounded border hover:bg-gray-100 transition text-sm"
+          aria-label="Next month"
+        >
           ▶
         </button>
       </div>
 
-      {/* Calendar grid */}
+      {/* Calendar Grid */}
       <div className="mt-2 grid grid-cols-7 gap-1 text-[12px]">
         {renderCalendar(calendarDate).map((cell) => (
           <button
@@ -65,9 +76,13 @@ export default function CalendarPanel({
               }
             }}
             type="button"
-            className={`p-2 rounded text-center transition ${
-              cell.isCurrentMonth ? '' : 'opacity-50'
-            } ${cell.iso === selectedDateISO ? 'bg-green-50 ring-1 ring-green-200' : ''}`}
+            className={`
+              p-2 rounded text-center transition
+              ${cell.isCurrentMonth ? 'text-gray-800' : 'text-gray-400 opacity-50'}
+              ${cell.iso === selectedDateISO ? 'bg-green-50 ring-1 ring-green-200' : ''}
+              hover:bg-green-100
+            `}
+            aria-current={cell.iso === selectedDateISO ? 'date' : undefined}
           >
             {cell.day}
           </button>

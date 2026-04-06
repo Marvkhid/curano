@@ -8,31 +8,35 @@ interface DescriptionSectionProps {
 }
 
 export default function DescriptionSection({ patient }: DescriptionSectionProps) {
+  const fields = [
+    { label: 'Class',     value: patient.class },
+    { label: 'Diagnosis', value: patient.diagnosisCode },
+    { label: '',          value: 'Prostate' },
+    { label: 'Stage',     value: patient.stage },
+    { label: 'ER status', value: patient.erStatus },
+  ];
+
   return (
-    <div className="flex-1">
-      <h3 className="text-sm font-semibold text-gray-700 uppercase mb-4">Description</h3>
-      <div className="space-y-3 text-sm">
-        <div className="flex justify-between">
-          <span className="text-gray-500">Class</span>
-          <span className="text-gray-900 font-medium">{patient.class}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-500">Diagnosis</span>
-          <span className="text-gray-900 font-medium">{patient.diagnosisCode}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-500"></span>
-          <span className="text-gray-900 font-medium">Prostate</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-500">Stage</span>
-          <span className="text-gray-900 font-medium">{patient.stage}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-500">ER status</span>
-          <span className="text-gray-900 font-medium">{patient.erStatus}</span>
-        </div>
-      </div>
+    <div className="flex-1 w-full min-w-0">
+      <h3 className="text-xs sm:text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3 sm:mb-4">
+        Description
+      </h3>
+
+      <dl className="space-y-2 sm:space-y-3">
+        {fields.map((field, i) => (
+          <div
+            key={i}
+            className="flex items-center justify-between gap-2 sm:gap-4 min-w-0"
+          >
+            <dt className="text-xs sm:text-sm text-gray-500 flex-shrink-0">
+              {field.label}
+            </dt>
+            <dd className="text-xs sm:text-sm text-gray-900 font-medium text-right truncate min-w-0">
+              {field.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </div>
   );
 }
